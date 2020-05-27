@@ -2,7 +2,7 @@ import tornado.ioloop
 import tornado.web
 import tornado.options
 from tornado.options import define, options
-from handlers import main
+from handlers import main,account
 
 
 define("port",default="8888",help="Listening port",type=int)
@@ -15,8 +15,9 @@ class Application(tornado.web.Application):
             (r"/", main.IndexHandler),
             (r"/explore", main.ExploreHandler),
             (r"/post/(?P<post_id>[0-9]+)", main.PostHandler),
-            # (r"/register",account.RegisterHandler),  # 注册
-            # (r"/login", account.LoginHanlder),  # 登录
+            (r"/signup",account.RegisterHandler),  # 注册
+            (r"/login", account.LoginHanlder),  # 登录
+            (r"/upload", main.UploadHandler),  # 上传
 
         ]
 

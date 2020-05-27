@@ -35,18 +35,18 @@ class User(Base):
             return ''
 
 #
-# class Post(Base):
-#     __tablename__ = 'posts'
-#
-#     id = Column(Integer, primary_key=True, autoincrement=True)
-#     image_url = Column(String(200))
-#     thumb_url = Column(String(200))
-#
-#     user_id = Column(Integer, ForeignKey('users.id'))
-#     user = relationship('User', backref='posts', uselist=False, cascade='all')
-#
-#     def __repr__(self):
-#         return "<Post:#{}>".format(self.id)
+class Post(Base):
+    __tablename__ = 'posts'
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    image_url = Column(String(200))
+    thumb_url = Column(String(200))
+
+    user_id = Column(Integer, ForeignKey('users.id'))
+    user = relationship('User', backref='posts', uselist=False, cascade='all')
+
+    def __repr__(self):
+        return "<Post:#{}>".format(self.id)
 #
 #
 # class Like(Base):
