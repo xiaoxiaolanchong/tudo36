@@ -6,6 +6,6 @@
 {% block body %}
 首页<br>
     {% for p in posts %}
-        <img src="{{ statis_url(p.image_url) }}" /> <br>
+        <img src="{{ static_url(p.image_url) }}" /> <br>
     {% end %}
 {% end %}

@@ -4,6 +4,10 @@
 
 
 {% block body %}
-详情页
-
+详情页<br>
+{#{% for p in posts %}#}
+{#<a href="{{ '/post/{}'.format(p.id) }}"><img src="{{ static_url(p.thumb_url) }}" /></a>#}
+{##}
+{#{% end %}#}
+<img src="{{ static_url(p.thumb_url) }}" />
 {% end %}

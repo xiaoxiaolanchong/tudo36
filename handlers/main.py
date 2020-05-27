@@ -2,7 +2,7 @@ import tornado.web
 from pycket.session import SessionMixin
 from PIL import Image
 from utils.account import HandlerORM
-# # from utils.photo import UploadImage
+from utils.photo import UploadImage
 from models.db import Session
 
 
@@ -35,8 +35,8 @@ class ExploreHandler(BaseHandler):
     最近上传的缩略图片页面
     """
     def get(self):
-        # posts = self.orm.get_all_posts()
-        self.render('explore.html')
+        posts = self.orm.get_all_posts()
+        self.render('explore.html',posts=posts)
 
 
 class PostHandler(BaseHandler):
@@ -72,27 +72,27 @@ class PostHandler(BaseHandler):
 #
 #
 class UploadHandler(BaseHandler):
-    # @tornado.web.authenticated
+    @tornado.web.authenticated
     def get(self):
         self.render('upload.html')
 
-    # @tornado.web.authenticated
+    @tornado.web.authenticated
     def post(self):
         pics = self.request.files.get('picture', [])
         post_id = 1
         for p in pics:
-            save_path = 'statics/upload/{}'.format(p['filename'])
-            with open(save_path,'wb') as f:
-                f.write(p['body'])
-            post_id = self.orm.add_post('upload/{}'.format(p['filename']),None,self.current_user)
-            im = Image.open(save_path)
-            im.thumbnail((200,200))
-            im.save('statics/upload/thumd_{}.jpg'.format(p['filename']),'JPEG')
-            # up_img = UploadImage(p['filename'], self.settings['static_path'])
-            # up_img.save_upload(p['body'])
-            # up_img.make_thumb()
-            # post_id = self.orm.add_post(up_img.image_url,
-            #                             up_img.thumb_url,
-            #                             self.current_user)
+            # save_path = 'statics/upload/{}'.format(p['filename'])
+            # with open(save_path,'wb') as f:
+            #     f.write(p['body'])
+            # post_id = self.orm.add_post('upload/{}'.format(p['filename']),None,self.current_user)
+            # im = Image.open(save_path)
+            # im.thumbnail((200,200))
+            # im.save('statics/upload/thumd_{}.jpg'.format(p['filename']),'JPEG')
+            up_img = UploadImage(p['filename'], self.settings['static_path'])
+            up_img.save_upload(p['body'])
+            up_img.make_thumb()
+            post_id = self.orm.add_post(up_img.image_url,
+                                        up_img.thumb_url,
+                                        self.current_user)
 
         self.redirect('/post/{}'.format(post_id))
