@@ -24,7 +24,7 @@ class IndexHandler(BaseHandler):
     """
     首页，用户上传图片的展示
     """
-    # @tornado.web.authenticated
+    @tornado.web.authenticated
     def get(self):
         posts = self.orm.get_posts_for(self.current_user)
         self.render('index.html',posts=posts)

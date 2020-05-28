@@ -4,8 +4,38 @@
 
 
 {% block body %}
-首页<br>
-    {% for p in posts %}
-        <img src="{{ static_url(p.image_url) }}" /> <br>
-    {% end %}
+
+
+    <div class="alert alert-success" role="alert">
+      A simple success alert—check it out!
+    </div>
+    <div class="row">
+
+        <div class="col-md-8">
+
+            {% for p in posts %}
+
+            <div class="card">
+               <a href="{{ '/post/{}'.format(p.id) }}">
+                <img class="card-img-top" src="{{ static_url(p.image_url) }}" alt="Card image cap">
+               </a>
+              <div class="card-body">
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              </div>
+            </div>
+            <br>
+            {% end %}
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+              <img class="card-img-top" src="https://code.z01.com/v4/assets/img/bootstrap-stack.png" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">Too in Tanzhou</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+        </div>
+    </div>
+
 {% end %}

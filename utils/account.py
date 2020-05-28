@@ -43,7 +43,7 @@ class HandlerORM:
 
         return post_id
 
-    def get_all_posts(self):
+    def Yget_all_posts(self):
         posts = self.db.query(Post).all()
         return posts
 

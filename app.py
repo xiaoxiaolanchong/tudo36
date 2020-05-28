@@ -18,6 +18,7 @@ class Application(tornado.web.Application):
             (r"/signup",account.RegisterHandler),  # 注册
             (r"/login", account.LoginHanlder),  # 登录
             (r"/upload", main.UploadHandler),  # 上传
+            (r"/logout", account.LogoutHandler),  # 登出
 
         ]
 
