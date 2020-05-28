@@ -2,7 +2,7 @@ import tornado.ioloop
 import tornado.web
 import tornado.options
 from tornado.options import define, options
-from handlers import main,account
+from handlers import main,account,chat,service
 
 
 define("port",default="8888",help="Listening port",type=int)
@@ -19,6 +19,9 @@ class Application(tornado.web.Application):
             (r"/login", account.LoginHanlder),  # 登录
             (r"/upload", main.UploadHandler),  # 上传
             (r"/logout", account.LogoutHandler),  # 登出
+            (r"/room", chat.RoomHandler),
+            (r"/ws", chat.ChatWSHandler),
+            (r"/save", service.AsyncHTTPClient),
 
         ]
 
